@@ -29,6 +29,8 @@
 
     .details-container {
       display: flex;
+      padding-left: 20px;
+      flex: 3;
 
       .detail-container {
         padding: 0 14px;
@@ -65,6 +67,8 @@
 
     .offer-details-container {
       display: flex;
+      flex: 7;
+
       .offer-detail {
         display: flex;
 
@@ -78,6 +82,8 @@
             font-weight: 400;
             font-size: 14px;
             color: #8A8A8A;
+            display: grid;
+            text-align: center;
           }
 
           .offer-date {
@@ -86,13 +92,25 @@
             font-weight: 400;
             font-size: 14px;
             color: #2D2D2D;
-
           }
         }
       }
     }
+  }
 
+  .offer-references {
+    display: flex;
+    flex: 7;
+  }
 
+  .numbers-container {
+    display: flex;
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 28px;
+    color: #2D2D2D;
   }
 
   .document-container {
@@ -104,9 +122,11 @@
     text-transform: uppercase;
     color: #8A8A8A;
     padding: 20px;
+    flex: 2;
+    text-align: center;
   }
 
-  .doc-title{
+  .doc-title {
     position: relative;
     bottom: 2px;
   }
