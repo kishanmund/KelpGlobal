@@ -1,0 +1,113 @@
+.widget-container {
+  padding-left: 30px;
+  padding-right: 60px;
+  margin-top: 37px;
+
+  .widget-header {
+    padding-left: 30px;
+    padding-bottom: 14px;
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    color: #2D2D2D;
+  }
+
+  .widget-body {
+    margin-left: 24px;
+    background-color: white;
+    display: flex;
+    padding: 17px 0px;
+    justify-content: space-around;
+
+    .profile-pic {
+      width: 46px;
+      height: 46px;
+      padding: 5px 0;
+      border-radius: 100%;
+    }
+
+    .details-container {
+      display: flex;
+
+      .detail-container {
+        padding: 0 14px;
+        display: grid;
+
+        .name-container {
+          font-family: sans-serif;
+          font-style: normal;
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 20px;
+          color: #2D2D2D;
+        }
+
+        .position-container {
+          font-family: sans-serif;
+          font-style: normal;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 20px;
+          color: #8A8A8A;
+        }
+
+        .location-container {
+          font-family: sans-serif;
+          font-style: normal;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 20px;
+          color: #8A8A8A;
+        }
+      }
+    }
+
+    .offer-details-container {
+      display: flex;
+      .offer-detail {
+        display: flex;
+
+        .header-date {
+          display: grid;
+          padding: 6px 17px;
+
+          .offer-header {
+            font-family: sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            color: #8A8A8A;
+          }
+
+          .offer-date {
+            font-family: sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            color: #2D2D2D;
+
+          }
+        }
+      }
+    }
+
+
+  }
+
+  .document-container {
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 13px;
+    line-height: 18px;
+    text-transform: uppercase;
+    color: #8A8A8A;
+    padding: 20px;
+  }
+
+  .doc-title{
+    position: relative;
+    bottom: 2px;
+  }
+}

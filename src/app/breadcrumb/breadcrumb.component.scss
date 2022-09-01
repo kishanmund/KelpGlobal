@@ -1,0 +1,18 @@
+.breadcrumb-container {
+  display: flex;
+  border-bottom: 1px solid #979797;
+  padding: 26px 35px;
+  background-color: white;
+
+  .icon-container {}
+
+  .title-container {
+    margin-left: 19px;
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    color: #2D2D2D;
+
+  }
+}
