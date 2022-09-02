@@ -5,16 +5,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { WidgetComponent } from './widget/widget.component';
+import { ClickOutsideModule } from 'ng-click-outside';
+import { WidgetTableComponent } from './widget-table/widget-table.component';
+import { NgImageSliderModule } from 'ng-image-slider';
 
 @NgModule({
   declarations: [
     AppComponent,
     BreadcrumbComponent,
-    WidgetComponent
+    WidgetComponent,
+    WidgetTableComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ClickOutsideModule,
+    NgImageSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

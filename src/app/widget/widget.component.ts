@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WidgetComponent implements OnInit {
 
+  currentDropdownIndex 
+  enabled=true
+  
+
   widgetRows =[
     {
       header:"Offer Extended",
@@ -18,78 +22,46 @@ export class WidgetComponent implements OnInit {
         {
           header:"Offer Extended on",
           date:"21 Jul 2020",
-          isIcon:false
+          isIcon:false,
+          status:false,
+          dropdownStatus:false
         },
         {
           header:"Offer Accepted on",
           date:"23 Jul 2020",
-          isIcon:false
+          isIcon:false,
+          status:false,
+          dropdownStatus:false
         },
         {
           header:"Date of Joining",
           date:"1 Sep 2020",
-          isIcon:false
+          isIcon:false,
+          status:false,
+          dropdownStatus:false
         },
         {
           header:"Status",
           date:"",
           isIcon:true,
-          iconName:"approved"
+          iconName:"approved",
+          status:true,
+          dropdown:true,
+          dropdownStatus:false,
         },
         {
           header:"Background Verification",
           date:"",
           isIcon:true,
-          iconName:"approved"
+          iconName:"approved",
+          status:true,
+          dropdown:true,
+          dropdownStatus:false,
         },
       ],
       docName:"DOCUMENT",
       referenceCheck:false,
       references:[]
-    },
-    {
-      header:"Dropped",
-      profileURL:"./../../assets/images/profile-pic.jpeg",
-      name:"Shridhar Joshi",
-      position:"Director, Piramal Enterprises",
-      location:"Mumbai",
-      offerDetails : [
-        {
-          header:"No Hire",
-          date:"1 Jul 2018",
-          isIcon:true,
-          iconName:"dislike"
-        },
-        {
-          header:"No Hire",
-          date:"1 Jul 2018",
-          isIcon:true,
-          iconName:"dislike"
-        },
-        {
-          header:"",
-          date:"1 Jul 2018",
-          isIcon:true,
-          iconName:"calendar"
-        },
-        {
-          header:"",
-          date:"1 Jul 2018",
-          isIcon:true,
-          iconName:"calendar"
-        },
-        {
-          header:"",
-          date:"1 Jul 2018",
-          isIcon:true,
-          iconName:"calendar"
-        },
-      ],
-      docName:"DOCUMENT",
-      referenceCheck:true,
-      references:[
-        7,3
-      ]
     }
   ]
 
@@ -98,6 +70,44 @@ export class WidgetComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  selectIcon(value){
+    if(value == 'like'){
+      this.widgetRows[0].offerDetails[this.currentDropdownIndex].iconName = 'approved'
+      
+    }
+    else if(value == 'reject'){
+      this.widgetRows[0].offerDetails[this.currentDropdownIndex].iconName = 'reject'
+    }
+    else if(value == 'neutral'){
+      this.widgetRows[0].offerDetails[this.currentDropdownIndex].iconName = 'neutral'
+    }
+    this.widgetRows[0].offerDetails[this.currentDropdownIndex].dropdownStatus = false
+  }
+
+  onClickDropdown(value,i,j){
+   if(i != this.currentDropdownIndex){
+    if(this.currentDropdownIndex != undefined){
+      this.widgetRows[j].offerDetails[this.currentDropdownIndex].dropdownStatus = false
+      this.currentDropdownIndex = i
+      this.widgetRows[j].offerDetails[this.currentDropdownIndex].dropdownStatus = !this.widgetRows[j].offerDetails[this.currentDropdownIndex].dropdownStatus
+    }
+    else{
+      this.currentDropdownIndex = i
+      this.widgetRows[j].offerDetails[this.currentDropdownIndex].dropdownStatus = !this.widgetRows[j].offerDetails[this.currentDropdownIndex].dropdownStatus
+    }
+   }
+   else if( value == "outside"){
+    this.widgetRows[j].offerDetails[this.currentDropdownIndex].dropdownStatus = false
+   }
+   else{
+    this.widgetRows[j].offerDetails[this.currentDropdownIndex].dropdownStatus = !this.widgetRows[j].offerDetails[this.currentDropdownIndex].dropdownStatus
+   }
+  }
+
+  onClickedOutside(value,i,j){
+    this.onClickDropdown("outside",this.currentDropdownIndex,j)
   }
 
 }

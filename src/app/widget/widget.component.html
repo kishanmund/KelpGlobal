@@ -1,4 +1,4 @@
-<div class="widget-container" *ngFor="let row of widgetRows">
+<div class="widget-container" *ngFor="let row of widgetRows,let j = index">
   <div class="widget-header">
     {{row.header}}
   </div>
@@ -17,12 +17,15 @@
         </span>
       </div>
     </div>
-    <div class="offer-references">
+    <div class="offer-references"  (clickOutside)="onClickedOutside(offer,i,j)" 
+    [attachOutsideOnClick]="true"
+    [clickOutsideEnabled]="enabled"
+    [emitOnBlur]="true">
       <div class="offer-details-container">
-        <div class="offer-detail" *ngFor="let offer of row.offerDetails,let i = index">
+        <div class="offer-detail"  (click)="onClickDropdown(offer,i,j)"    *ngFor="let offer of row.offerDetails,let i = index">
           <div class="header-date">
             <span class="offer-header">
-              <span class="widget-icon">
+              <span class="widget-icon" >
                 <span *ngIf="offer.isIcon && offer.iconName == 'dislike'">
                   <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -41,7 +44,7 @@
                       d="M4.17647 8.47044C4.17647 7.83515 3.75294 7.41162 3.11765 7.41162H1V17.9999H3.11765C3.75294 17.9999 4.17647 17.5763 4.17647 16.941V8.47044Z"
                       fill="#9EC74A" stroke="#9EC74A" />
                   </svg>
-  
+
                 </span>
                 <span *ngIf="offer.isIcon && offer.iconName == 'calendar'">
                   <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -59,16 +62,90 @@
             <span class="offer-date">
               {{offer.date}}
             </span>
-            <span *ngIf="offer.isIcon && offer.iconName == 'approved'">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="12" cy="12" r="11.5" fill="#9EC74A" stroke="#779C2A" />
+            <span *ngIf="offer.isIcon" >
+              <span *ngIf="offer.iconName == 'approved'" class="icon-like" >
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="9" cy="9" r="8.5" fill="#9EC74A" stroke="#779C2A" />
+                  <path
+                    d="M7.5376 7.92897C7.5376 7.62522 7.6591 7.38222 7.84135 7.13922L10.5143 4.04097C10.6358 3.85872 10.8788 3.79797 11.1218 3.85872C11.3648 3.91947 11.4863 4.04097 11.6078 4.28397L11.7293 4.58772C11.8508 4.89147 11.7901 5.25597 11.6686 5.49897L10.5751 7.50372H13.9163C14.0986 7.50372 14.2808 7.62522 14.4023 7.74672C14.5238 7.92897 14.5238 8.11122 14.4631 8.29347L12.7013 12.789C12.5191 13.275 12.0938 13.5787 11.5471 13.5787H8.1451C7.7806 13.5787 7.5376 13.3357 7.5376 12.9712V7.92897Z"
+                    fill="white" />
+                  <path
+                    d="M6.3225 8.11141C6.3225 7.74691 6.0795 7.50391 5.715 7.50391H4.5V13.5789H5.715C6.0795 13.5789 6.3225 13.3359 6.3225 12.9714V8.11141Z"
+                    fill="white" />
+                </svg>
+              </span>
+
+              <span *ngIf="offer.iconName == 'reject'" class="icon-dislike">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="9" cy="9" r="8.5" fill="#F36C6E" stroke="#DA3032"/>
+                  <path d="M10.7625 10.6709C10.7625 10.9746 10.641 11.2176 10.4587 11.4606L7.7857 14.5589C7.6642 14.7411 7.4212 14.8019 7.1782 14.7411C6.9352 14.6804 6.8137 14.5589 6.6922 14.3159L6.5707 14.0121C6.4492 13.7084 6.50995 13.3439 6.63145 13.1009L7.72495 11.0961H4.3837C4.20145 11.0961 4.0192 10.9746 3.8977 10.8531C3.7762 10.6709 3.7762 10.4886 3.83695 10.3064L5.5987 5.81088C5.78095 5.32488 6.2062 5.02114 6.75295 5.02114H10.155C10.5195 5.02114 10.7625 5.26413 10.7625 5.62863V10.6709Z" fill="white"/>
+                  <path d="M11.9776 10.4887C11.9776 10.8532 12.2206 11.0962 12.585 11.0962H13.8V5.02119H12.585C12.2206 5.02119 11.9776 5.26419 11.9776 5.62869V10.4887Z" fill="white"/>
+                  </svg>
+                  
+              </span>
+              <span *ngIf="offer.iconName == 'neutral'" class="icon-neutral">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="9" cy="9" r="8.5" fill="#F3B46C" stroke="#CB8637"/>
+                  <rect x="4.5" y="8.25" width="9" height="2.25" rx="1" fill="white"/>
+                  </svg>
+                  
+              </span>
+
+              <span class="icon-dropdown" *ngIf="offer.dropdown"  >
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M4.39564 7.42421C4.24165 7.26571 4.35396 7 4.57495 7H13.4259C13.6469 7 13.7592 7.26571 13.6052 7.42421L9.35903 11.7946C9.16267 11.9967 8.83816 11.9967 8.6418 11.7946L4.39564 7.42421Z" fill="#525557"/>
+                  </svg>
+                  
+              </span>
+            </span>
+          </div>
+          <div class="status-popup" (clickOutside)="onClickedOutside(offer,i)" 
+          [attachOutsideOnClick]="true"
+          [emitOnBlur]="true"   *ngIf="offer.status && offer.dropdownStatus" >
+            <span class="status-popup-icon" (click)="selectIcon('like')" >
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="9" cy="9" r="8.5" fill="#9EC74A" stroke="#779C2A" />
                 <path
-                  d="M10.05 10.5721C10.05 10.1671 10.212 9.84312 10.455 9.51912L14.019 5.38812C14.181 5.14512 14.505 5.06412 14.829 5.14512C15.153 5.22612 15.315 5.38812 15.477 5.71212L15.639 6.11712C15.801 6.52212 15.72 7.00812 15.558 7.33212L14.1 10.0051H18.555C18.798 10.0051 19.041 10.1671 19.203 10.3291C19.365 10.5721 19.365 10.8151 19.284 11.0581L16.935 17.0521C16.692 17.7001 16.125 18.1051 15.396 18.1051H10.86C10.374 18.1051 10.05 17.7811 10.05 17.2951V10.5721Z"
+                  d="M7.5376 7.92897C7.5376 7.62522 7.6591 7.38222 7.84135 7.13922L10.5143 4.04097C10.6358 3.85872 10.8788 3.79797 11.1218 3.85872C11.3648 3.91947 11.4863 4.04097 11.6078 4.28397L11.7293 4.58772C11.8508 4.89147 11.7901 5.25597 11.6686 5.49897L10.5751 7.50372H13.9163C14.0986 7.50372 14.2808 7.62522 14.4023 7.74672C14.5238 7.92897 14.5238 8.11122 14.4631 8.29347L12.7013 12.789C12.5191 13.275 12.0938 13.5787 11.5471 13.5787H8.1451C7.7806 13.5787 7.5376 13.3357 7.5376 12.9712V7.92897Z"
                   fill="white" />
                 <path
-                  d="M8.43 10.8149C8.43 10.3289 8.106 10.0049 7.62 10.0049H6V18.1049H7.62C8.106 18.1049 8.43 17.7809 8.43 17.2949V10.8149Z"
+                  d="M6.3225 8.11141C6.3225 7.74691 6.0795 7.50391 5.715 7.50391H4.5V13.5789H5.715C6.0795 13.5789 6.3225 13.3359 6.3225 12.9714V8.11141Z"
                   fill="white" />
               </svg>
+
+            </span>
+            <span class="divider">
+              <svg width="48" height="1" viewBox="0 0 48 1" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path opacity="0.5" d="M1 0.5H47" stroke="#E6E6E6" stroke-linecap="square" />
+              </svg>
+            </span>
+
+
+            <span class="status-popup-icon" (click)="selectIcon('reject')">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="9" cy="9" r="8.5" fill="#F36C6E" stroke="#DA3032" />
+                <path
+                  d="M10.7625 10.6709C10.7625 10.9746 10.641 11.2176 10.4587 11.4606L7.7857 14.5589C7.6642 14.7411 7.4212 14.8019 7.1782 14.7411C6.9352 14.6804 6.8137 14.5589 6.6922 14.3159L6.5707 14.0121C6.4492 13.7084 6.50995 13.3439 6.63145 13.1009L7.72495 11.0961H4.3837C4.20145 11.0961 4.0192 10.9746 3.8977 10.8531C3.7762 10.6709 3.7762 10.4886 3.83695 10.3064L5.5987 5.81088C5.78095 5.32488 6.2062 5.02114 6.75295 5.02114H10.155C10.5195 5.02114 10.7625 5.26413 10.7625 5.62863V10.6709Z"
+                  fill="white" />
+                <path
+                  d="M11.9776 10.4887C11.9776 10.8532 12.2206 11.0962 12.585 11.0962H13.8V5.02119H12.585C12.2206 5.02119 11.9776 5.26419 11.9776 5.62869V10.4887Z"
+                  fill="white" />
+              </svg>
+
+            </span>
+            <span class="divider">
+              <svg width="48" height="1" viewBox="0 0 48 1" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path opacity="0.5" d="M1 0.5H47" stroke="#E6E6E6" stroke-linecap="square" />
+              </svg>
+            </span>
+
+
+            <span class="status-popup-icon" (click)="selectIcon('neutral')">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="9" cy="9" r="8.5" fill="#F3B46C" stroke="#CB8637" />
+                <rect x="4.5" y="8.25" width="9" height="2.25" rx="1" fill="white" />
+              </svg>
+
             </span>
           </div>
           <span class="vertical-line" *ngIf="i != row.offerDetails.length - 1 ">
@@ -77,7 +154,7 @@
             </svg>
           </span>
         </div>
-        
+
       </div>
       <div style="    display: flex;" *ngIf="row.referenceCheck">
         <div class="numbers-container" *ngFor="let number of  row.references,let i = index">
@@ -106,4 +183,8 @@
       </span>
     </div>
   </div>
+</div>
+
+<div>
+  <app-widget-table></app-widget-table>
 </div>
