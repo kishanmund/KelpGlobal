@@ -103,6 +103,7 @@
     .offer-details-container {
       display: flex;
       flex: 6;
+      justify-content: center;
 
       .offer-detail {
         display: flex;
@@ -197,7 +198,7 @@
   }
   .ng-image-slider{
     height: unset !important;
-    width: 466px;
+    width: 414px;
   }
 } 
 
@@ -208,13 +209,13 @@
   .left-icon{
     position: absolute;
     top: 30px;
-    left: -30px;
+    left: 30px;
   }
 
   .right-icon{
     position: absolute;
     top: 30px;
-    right: 20px;
+    right: 30px;
   }
   div:nth-child(1) {
     flex: 3;
