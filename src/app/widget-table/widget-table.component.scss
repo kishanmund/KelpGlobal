@@ -1,10 +1,19 @@
 .widget-container {
-  padding-left: 30px;
+  padding-left: 54px;
   padding-right: 60px;
   margin-top: 37px;
 
+  .table-container {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 20px;
+
+    .header-text {
+      padding: 10px 0;
+    }
+  }
+
   .widget-header {
-    padding-left: 30px;
     padding-bottom: 14px;
     font-family: sans-serif;
     font-style: normal;
@@ -16,11 +25,9 @@
   .widget-subheader {
     margin-left: 24px;
     background-color: white;
-    display: flex;
     padding: 17px 0px;
-    justify-content: space-around;
     text-align: center;
-    font-family: 'Nunito Sans';
+    font-family: sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -28,32 +35,17 @@
     text-align: center;
     letter-spacing: 1px;
     text-transform: uppercase;
-
     color: #8A8A8A;
 
-    span:nth-child(1) {
-      flex: 3;
-    }
-
-    span:nth-child(2) {
-      flex: 4;
-    }
-
-    span:nth-child(3) {
-      flex: 2;
-    }
-
-    span:nth-child(4) {
-      flex: 2;
-    }
   }
 
   .widget-body {
     margin-left: 24px;
     background-color: white;
-    display: flex;
     padding: 17px 0px;
-    justify-content: space-around;
+    height: 100px;
+    margin: 20px 0;
+
 
     .profile-pic {
       width: 46px;
@@ -143,7 +135,13 @@
             color: #8A8A8A;
             display: grid;
             text-align: center;
+
+            .widget-icon {
+              height: 0;
+            }
           }
+
+
 
           .offer-date {
             font-family: sans-serif;
@@ -151,15 +149,59 @@
             font-weight: 400;
             font-size: 14px;
             color: #2D2D2D;
+            padding: 10px 0 0;
           }
         }
+      }
+    }
+
+    .menu-icon {
+      position: relative;
+      right: -54px;
+      cursor: pointer;
+    }
+
+    .menuPopup {
+      width: 178px;
+      display: grid;
+      background: white;
+      background: #FFFFFF;
+      border: 0.2px solid #D2D2D2;
+      box-shadow: 0px 6px 10px rgb(188 188 188 / 36%);
+      border-radius: 5px;
+      position: absolute;
+      left: -190px;
+
+      span {
+        padding: 12px 20px;
+        text-align: center;
+        font-family: 'Nunito Sans';
+        font-style: normal;
+        font-weight: 900;
+        font-size: 13px;
+        line-height: 18px;
+        text-transform: uppercase;
+        color: #8A8A8A;
+        cursor: pointer;
       }
     }
   }
 
   .offer-references {
     display: flex;
-    flex: 5;
+    // flex: 5;
+  }
+
+  .numHead-container {
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #8A8A8A;
+    display: flex;
+    position: relative;
   }
 
   .numbers-container {
@@ -192,44 +234,55 @@
 }
 
 
-::ng-deep ng-image-slider{
-  .image-popup{
-    height:56px !important
+::ng-deep ng-image-slider {
+  .image-popup {
+    height: 56px !important
   }
-  .ng-image-slider{
+
+  .ng-image-slider {
     height: unset !important;
     width: 414px;
   }
-} 
 
-.image-slider{
+}
+
+.image-slider {
   height: 83px;
   display: flex;
+  justify-content: center;
 
-  .left-icon{
-    position: absolute;
+  .left-icon {
+    position: relative;
     top: 30px;
-    left: 30px;
   }
 
-  .right-icon{
-    position: absolute;
+  .right-icon {
+    position: relative;
     top: 30px;
-    right: 30px;
   }
-  div:nth-child(1) {
-    flex: 3;
-  }
+}
 
-  div:nth-child(2) {
-    flex: 5;
-  }
 
-  div:nth-child(3) {
-    flex: 2;
-  }
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14),
+    0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
 
-  div:nth-child(4) {
-    flex: 2;
-  }
+
+
+.cdk-drag-preview {
+  background: white;
+  padding: 20px 10px;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.87);
+  display: none;
+  align-items: center;
+  font-size: 14px;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14),
+    0 3px 14px 2px rgba(0, 0, 0, 0.12);
 }

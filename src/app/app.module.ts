@@ -9,6 +9,8 @@ import { ClickOutsideModule } from 'ng-click-outside';
 import { WidgetTableComponent } from './widget-table/widget-table.component';
 import { NgImageSliderModule } from 'ng-image-slider';
 
+import {DragDropModule} from '@angular/cdk/drag-drop';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +22,8 @@ import { NgImageSliderModule } from 'ng-image-slider';
     BrowserModule,
     AppRoutingModule,
     ClickOutsideModule,
-    NgImageSliderModule
+    NgImageSliderModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]

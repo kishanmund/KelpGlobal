@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WidgetComponent implements OnInit {
 
-  currentDropdownIndex 
+  currentDropdownIndex = 0
   enabled=true
   
 
